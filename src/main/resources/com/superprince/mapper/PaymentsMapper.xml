@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.superprince.mapper.PaymentsMapper" >
+    <resultMap id="paymentsResultMap" type="Payments">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="name" column="name"/>
+        <result property="paymentType" column="paymentType"/>
+        <result property="unit" column="unit"/>
+        <result property="descript" column="descript"/>
+        <result property="day" column="day"/>
+        <result property="crtTime" column="crtTime"/>
+        <result property="type" column="type"/>
+        <result property="unitName" column="unitName"/>
+        <result property="typeName" column="typeName"/>
+    </resultMap>
+    <select id="queryPage" parameterType="Map" resultType="list" resultMap="paymentsResultMap">
+        select * from vpayments 
+        <trim prefix="where" prefixOverrides="and |or">  
+        <if test="paymentType != null">
+            paymenttype = #{paymenttype}  
+        </if>  
+        <if test="name != null">  
+            and name like #{name}  
+        </if>  
+        <if test="type != null">  
+            and type = #{type}  
+        </if>  
+        <if test="day != null">  
+            and day = #{day}  
+        </if>  
+        </trim>  
+        order by day desc
+    </select>
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        select count(*) from vpayments 
+        <trim prefix="where" prefixOverrides="and |or">  
+        <if test="paymentType != null">
+            paymenttype = #{paymenttype}  
+        </if>  
+        <if test="name != null">  
+            and name like #{name}  
+        </if>  
+        <if test="type != null">  
+            and type = #{type}  
+        </if>  
+        <if test="day != null">  
+            and day = #{day}  
+        </if>  
+        </trim> 
+    </select>
+    <insert id="addPayments" parameterType="Payments">
+        insert into payments(value,name,paymentType,unit,descript,day,crtTime,type)
+        values (#{value},#{name},#{paymentType},#{unit},#{descript},#{day},#{crtTime},#{type})
+    </insert>
+    <delete id="delPayments" parameterType="String" >
+        delete from  payments where id = #{id}
+    </delete>
+    <select id="getPaymentsById" parameterType="String" resultType="Payments">
+        select * from payments where id = #{id}
+    </select>
+    <update id="updatePayments" parameterType="Payments">
+        update payments set name = #{name},value = #{value},unit = #{unit},type = #{type},descript = #{descript}
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.superprince.mapper.BugetMapper" >
+    <resultMap id="bugetResultMap" type="Buget">
+        <id property="id" column="id"/>
+        <result property="value" column="value"/>
+        <result property="month" column="month"/>
+        <result property="unitName" column="unitName"/>
+    </resultMap>
+    
+    <select id="getBugetByMonth" parameterType="String" resultType="Buget">
+        select * from buget where month = #{month}
+    </select>
+    <select id="queryPage" parameterType="Map" resultType="list" resultMap="bugetResultMap">
+        select * from vbuget 
+        <trim prefix="where" prefixOverrides="and |or">  
+        <if test="month != null">  
+            month = #{month}  
+        </if>  
+        </trim>  
+        order by month
+    </select>
+    <select id="getTotal" parameterType="Map" resultType="Integer">
+        select count(*) from vbuget 
+        <trim prefix="where" prefixOverrides="and |or">  
+        <if test="month != null">  
+            month = #{month}  
+        </if>  
+        </trim> 
+    </select>
+    <insert id="addBuget" parameterType="Buget" useGeneratedKeys="true">
+        insert into buget(month,value,unit) values (#{month},#{value},#{unit})
+    </insert>
+    <delete id="deleteBuget" parameterType="String" >
+        delete from  buget where id = #{id}
+    </delete>
+</mapper>
