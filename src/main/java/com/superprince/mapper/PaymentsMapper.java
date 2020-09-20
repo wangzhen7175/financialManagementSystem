@@ -21,4 +21,11 @@ public interface PaymentsMapper extends BaseMapper<Payments> {
 
     void updatePayments(Payments model);
 
+     Integer getWeekSum(Map<String, String> map);
+
+     Integer getMonthSum(Map<String, String> map);
+
+     List<Map> getMonthSumByType(String month);
+
+     Integer getDayValue(String day);
 }

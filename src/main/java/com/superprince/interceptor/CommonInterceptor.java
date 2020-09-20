@@ -28,7 +28,7 @@ public class CommonInterceptor implements HandlerInterceptor {
             HttpSession session = request.getSession();
             String url = request.getRequestURI(); // 获取登录的uri，这个是不进行拦截的
             //if(session.getAttribute("_CURRENT_USER")!=null || url.indexOf("home.action")!=-1 || url.indexOf("login.action")!=-1) {
-            if(session.getAttribute("_CURRENT_USER")!=null) {
+            if(session.getAttribute("sessionUser")!=null) {
                 // 登录成功不拦截
                 return true;
             }else {

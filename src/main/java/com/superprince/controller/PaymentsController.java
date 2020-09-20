@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/paymentsController")
 public class PaymentsController
 {
   @Resource
   private PaymentsService service;
   
-  @RequestMapping("/query")
+  @RequestMapping("/paymentsController/query")
   @ResponseBody
   public Object query(@RequestParam Map<String,Object> filter)
   {

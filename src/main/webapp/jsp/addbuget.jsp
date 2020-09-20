@@ -13,7 +13,7 @@ $(function(){
 });
 function submit(){
 	$('#myform').form('submit', {
-        url : '<%=basePath%>/bugetController/addBuget.do',
+        url : './addBuget.do',
         onSubmit : function() {
             
             if ($(this).form("validate")) {
@@ -64,7 +64,7 @@ function cancel() {
                     valueField:'code',
                     textField:'codename',
                     width:80,
-                    url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=currency'
+                    url:'./listDatadictCata.do?catalog=currency'
                 " />
                 </td>
             </tr>

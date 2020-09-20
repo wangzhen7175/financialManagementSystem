@@ -11,10 +11,10 @@ $(function() {
 	 */
 	$("#submitBtn").hover(
 		function() {
-			$("#submitBtn").attr("src", "/money/res/images/regist2.jpg");
+			$("#submitBtn").attr("src", "./res/images/regist2.jpg");
 		},
 		function() {
-			$("#submitBtn").attr("src", "/money/res/images/regist1.jpg");
+			$("#submitBtn").attr("src", "./res/images/regist1.jpg");
 		}
 	);
 	
@@ -42,13 +42,13 @@ $(function() {
 	 */
 	$("#registForm").submit(function() {
 		var bool = true;//表示校验通过
-		if(!validateLoginname()) {
+		if(!validateUserName()) {
 			bool = false;
 		}
-		if(!validateLoginpass()) {
+		if(!validatePassword()) {
 			bool = false;
 		}
-		if(!validateReloginpass()) {
+		if(!validateRePassword()) {
 			bool = false;
 		}
 		if(!validateEmail()) {
@@ -65,8 +65,8 @@ $(function() {
 /*
  * 登录名校验方法
  */
-function validateLoginname() {
-	var id = "loginname";
+function validateUserName() {
+	var id = "userName";
 	var value = $("#" + id).val();//获取输入框内容
 	/*
 	 * 1. 非空校验
@@ -98,7 +98,7 @@ function validateLoginname() {
 	 * 3. 是否注册校验
 	 */
 	$.ajax({
-		url:"/money/ValidateLoginname.do",//要请求的servlet
+		url:"./ValidateLoginname.do",//要请求的servlet
 		data:{loginname:value},//给服务器的参数
 		type:"POST",
 		dataType:"json",
@@ -118,8 +118,8 @@ function validateLoginname() {
 /*
  * 登录密码校验方法
  */
-function validateLoginpass() {
-	var id = "loginpass";
+function validatePassword() {
+	var id = "password";
 	var value = $("#" + id).val();//获取输入框内容
 	/*
 	 * 1. 非空校验
@@ -153,8 +153,8 @@ function validateLoginpass() {
 /*
  * 确认密码校验方法
  */
-function validateReloginpass() {
-	var id = "reloginpass";
+function validateRePassword() {
+	var id = "rePassword";
 	var value = $("#" + id).val();//获取输入框内容
 	/*
 	 * 1. 非空校验
@@ -172,7 +172,7 @@ function validateReloginpass() {
 	/*
 	 * 2. 两次输入是否一致校验
 	 */
-	if(value != $("#loginpass").val()) {
+	if(value != $("#password").val()) {
 		/*
 		 * 获取对应的label
 		 * 添加错误信息
@@ -312,5 +312,5 @@ function _hyz() {
 	 * 2. 重新设置它的src
 	 * 3. 使用毫秒来添加参数
 	 */
-	$("#imgVerifyCode").attr("src", "/money/VerifyCodeServlet?a=" + new Date().getTime());
+	$("#imgVerifyCode").attr("src", "./VerifyCodeServlet?a=" + new Date().getTime());
 }

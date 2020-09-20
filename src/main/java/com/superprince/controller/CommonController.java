@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/commonController")
 public class CommonController
 {
   @Resource

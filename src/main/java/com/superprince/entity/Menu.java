@@ -7,8 +7,8 @@ public class Menu implements Serializable
   private static final long serialVersionUID = -2589245519866726792L;
   private Integer menuId;
   private String menuName;
-  private String url;
-  private Integer parentId;
+  private String menuUrl;
+  private Integer parentMenuId;
 
   public static long getSerialVersionUID() {
     return serialVersionUID;
@@ -30,20 +30,20 @@ public class Menu implements Serializable
     this.menuName = menuName;
   }
 
-  public String getUrl() {
-    return url;
+  public String getMenuUrl() {
+    return menuUrl;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setMenuUrl(String menuUrl) {
+    this.menuUrl = menuUrl;
   }
 
-  public Integer getParentId() {
-    return parentId;
+  public Integer getParentMenuId() {
+    return parentMenuId;
   }
 
-  public void setParentId(Integer parentId) {
-    this.parentId = parentId;
+  public void setParentMenuId(Integer parentMenuId) {
+    this.parentMenuId = parentMenuId;
   }
 
   @Override
@@ -51,8 +51,8 @@ public class Menu implements Serializable
     return "Menu{" +
             "menuId=" + menuId +
             ", menuName='" + menuName + '\'' +
-            ", url='" + url + '\'' +
-            ", parentId=" + parentId +
+            ", menuUrl='" + menuUrl + '\'' +
+            ", parentMenuId=" + parentMenuId +
             '}';
   }
 }

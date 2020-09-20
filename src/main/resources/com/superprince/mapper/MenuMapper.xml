@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.superprince.mapper.MenuMapper" >
+
+    <resultMap id="menuResultMap" type="Menu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuUrl" column="menu_url"/>
+        <result property="parentMenuId" column="parent_menu_id"/>
+    </resultMap>
+
+    <select id="getMenuList" parameterType="String" resultType="list" resultMap="menuResultMap">
+        select * from menu 
+    </select>
+
+</mapper>

@@ -3,22 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.superprince.mapper.CommonMapper" >
-    <resultMap id="datadictResultMap" type="com.superprince.entity.DataDict">
+    <resultMap id="datadictResultMap" type="DataDict">
         <id property="id" column="id"/>
         <result property="catalog" column="catalog"/>
         <result property="code" column="code"/>
         <result property="codeName" column="codeName"/>
         <result property="userId" column="userId"/>
     </resultMap>
-    <resultMap id="menuResultMap" type="com.superprince.entity.Menu">
-        <id property="id" column="id"/>
-        <result property="menuName" column="menuName"/>
-        <result property="url" column="url"/>
-        <result property="parentId" column="parentId"/>
-    </resultMap>
-    <select id="getAllMenu" parameterType="String" resultType="list" resultMap="menuResultMap">
-        select * from menu 
-    </select>
     <select id="getDatadictList" resultType="list" resultMap="datadictResultMap">
         select * from datadict order by catalog,code
     </select>
@@ -38,22 +29,5 @@
         update datadict set catalog = #{catalog},code = #{code},menuName = #{menuName}
         where id = #{id}
     </update>
-    <select id="getWeekSum" parameterType="Map" resultType="Integer">
-        <![CDATA[
-        select SUM(value) from payments  
-        where paymentType = #{paymentType} and day >= #{monday} and day <= #{sunday}
-         ]]>
-    </select>
-    <select id="getMonthSum" parameterType="Map" resultType="Integer">
-        <![CDATA[
-        select SUM(value) from payments  
-        where paymentType = #{paymentType} and day like #{day}
-         ]]>
-    </select>
-    <select id="getMonthSumByType" parameterType="String" resultType="java.util.HashMap">
-        SELECT typeName,SUM(VALUE) AS value  FROM vpayments WHERE paymenttype = '2' and day like #{month} GROUP BY TYPE
-    </select>
-    <select id="getDayValue" parameterType="String" resultType="Integer">
-        select sum(value) from payments where day = #{day}
-    </select>
+
 </mapper>

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-
-import com.superprince.service.CommonService;
+import com.superprince.service.PaymentsService;
+import com.superprince.util.DateUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomePageController {
 
     @Resource
-    private CommonService commonService;
-
+    private PaymentsService paymentsService;
 
 
     @RequestMapping("/payincome.do")
@@ -31,14 +30,14 @@ public class HomePageController {
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH) + 1;
 
-        String monday = this.getCurrentMonday();
-        String sunday = this.getPreviousSunday();
+        String monday = DateUtils.getCurrentMonday();
+        String sunday = DateUtils.getPreviousSunday();
         String stryear = String.valueOf(year);
         String smonth = String.valueOf(month);
         if (month < 10)
             smonth = String.format("0%s", month);
         String strmonth = String.valueOf(year) + smonth;
-        List<Map<String, String>> result = this.commonService.getPayincomeData(stryear, strmonth, monday, sunday);
+        List<Map<String, String>> result = paymentsService.getPayincomeData(stryear, strmonth, monday, sunday);
         return result;
     }
 
@@ -54,41 +53,9 @@ public class HomePageController {
         String strmonth = String.valueOf(year) + smonth;
 
         int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        Map<String, String> ret = this.commonService.getMonthSumByType(strmonth, days);
+        Map<String, String> ret = this.paymentsService.getMonthSumByType(strmonth, days);
         return ret;
     }
 
-    // 获得当前日期与本周一相差的天数
-    private int getMondayPlus() {
-        Calendar cd = Calendar.getInstance();
-        // 获得今天是一周的第几天，星期日是第一天，星期二是第二天......
-        int dayOfWeek = cd.get(Calendar.DAY_OF_WEEK);
-        if (dayOfWeek == 1) {
-            return -6;
-        } else {
-            return 2 - dayOfWeek;
-        }
-    }
 
-    // 获得当前周- 周一的日期
-    private String getCurrentMonday() {
-        int mondayPlus = getMondayPlus();
-        GregorianCalendar currentDate = new GregorianCalendar();
-        currentDate.add(GregorianCalendar.DATE, mondayPlus);
-        Date monday = currentDate.getTime();
-        DateFormat df = new SimpleDateFormat("yyyyMMdd");
-        String preMonday = df.format(monday);
-        return preMonday;
-    }
-
-    // 获得当前周- 周日 的日期
-    private String getPreviousSunday() {
-        int mondayPlus = getMondayPlus();
-        GregorianCalendar currentDate = new GregorianCalendar();
-        currentDate.add(GregorianCalendar.DATE, mondayPlus + 6);
-        Date monday = currentDate.getTime();
-        DateFormat df = new SimpleDateFormat("yyyyMMdd");
-        String preMonday = df.format(monday);
-        return preMonday;
-    }
 }

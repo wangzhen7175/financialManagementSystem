@@ -1,4 +1,5 @@
 $(function() {
+	//alert("进来了");
 	/*
 	 * 1. 让登录按钮在得到和失去焦点时切换图片
 	 */
@@ -31,6 +32,7 @@ $(function() {
 	 */
 	$(".input").focus(function() {
 		var inputName = $(this).attr("name");
+		//alert(inputName);
 		$("#" + inputName + "Error").css("display", "none");
 	});
 
@@ -56,17 +58,17 @@ function invokeValidateFunction(inputName) {
 /*
  * 校验登录名
  */
-function validateLoginname() {
+function validateUserName() {
 	var bool = true;
-	$("#loginnameError").css("display", "none");
-	var value = $("#loginname").val();
+	$("#userNameError").css("display", "none");
+	var value = $("#userName").val();
 	if(!value) {// 非空校验
-		$("#loginnameError").css("display", "");
-		$("#loginnameError").text("用户名不能为空！");
+		$("#userNameError").css("display", "");
+		$("#userNameError").text("用户名不能为空！");
 		bool = false;
 	} else if(value.length < 3 || value.length > 20) {//长度校验
-		$("#loginnameError").css("display", "");
-		$("#loginnameError").text("用户名长度必须在3 ~ 20之间！");
+		$("#userNameError").css("display", "");
+		$("#userNameError").text("用户名长度必须在3 ~ 20之间！");
 		bool = false;
 	}
 	return bool;
@@ -75,17 +77,17 @@ function validateLoginname() {
 /*
  * 校验密码
  */
-function validateLoginpass() {
+function validatePassword() {
 	var bool = true;
-	$("#loginpassError").css("display", "none");
-	var value = $("#loginpass").val();
+	$("#passwordError").css("display", "none");
+	var value = $("#password").val();
 	if(!value) {// 非空校验
-		$("#loginpassError").css("display", "");
-		$("#loginpassError").text("密码不能为空！");
+		$("#passwordError").css("display", "");
+		$("#passwordError").text("密码不能为空！");
 		bool = false;
 	} else if(value.length < 3 || value.length > 20) {//长度校验
-		$("#loginpassError").css("display", "");
-		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
+		$("#passwordError").css("display", "");
+		$("#passwordError").text("密码长度必须在3 ~ 20之间！");
 		bool = false;
 	}
 	return bool;
@@ -113,7 +115,7 @@ function validateVerifyCode() {
 			type: "POST",
 			dataType: "json",
 			data: {method: "ajaxValidateVerifyCode", verifyCode: value},
-			url: "/money/verifyCode.do",
+			url: "./verifyCode.do",
 			success: function(flag) {
 				if(!flag) {
 					$("#verifyCodeError").css("display", "");

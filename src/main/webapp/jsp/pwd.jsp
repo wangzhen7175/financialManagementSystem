@@ -15,11 +15,11 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="/money/res/css/css.css">
-	<link rel="stylesheet" type="text/css" href="/money/res/css/user/pwd.css">
-	<script type="text/javascript" src="/money/res/js/jquery-1.5.1.js"></script>
-	<script type="text/javascript" src="/money/res/js/user/pwd.js"></script>
-	<script src="/money/res/js/common.js"></script>
+	<link rel="stylesheet" type="text/css" href="./res/css/css.css">
+	<link rel="stylesheet" type="text/css" href="./res/css/user/pwd.css">
+	<script type="text/javascript" src="./res/js/jquery-1.5.1.js"></script>
+	<script type="text/javascript" src="./res/js/user/pwd.js"></script>
+	<script src="./res/js/common.js"></script>
   </head>
   
   <body>
@@ -28,7 +28,7 @@
     </div>
 
 	<div class="div1">
-		<form action="/money/updatePassword.do" method="post" target="_top">
+		<form action="./updatePassword.do" method="post" target="_top">
 			<input type="hidden" name="method" value="updatePassword"/>
 		<table>
 			<tr>
@@ -37,23 +37,23 @@
 			</tr>
 			<tr>
 				<td align="right">原密码:</td>
-				<td><input class="input" type="password" name="loginpass" id="loginpass" value="${user.loginpass }"/></td>
-				<td><label id="loginpassError" class="error"></label></td>
+				<td><input class="input" type="password" name="password" id="password" value="${user.password }"/></td>
+				<td><label id="passwordError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right">新密码:</td>
-				<td><input class="input" type="password" name="newpass" id="newpass" value="${user.newpass }"/></td>
-				<td><label id="newpassError" class="error"></label></td>
+				<td><input class="input" type="password" name="newPassword" id="newPassword" value="${user.newPassword }"/></td>
+				<td><label id="newPasswordError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right">确认密码:</td>
-				<td><input class="input" type="password" name="reloginpass" id="reloginpass" value="${user.reloginpass }"/></td>
-				<td><label id="reloginpassError" class="error"></label></td>
+				<td><input class="input" type="password" name="rePassword" id="rePassword" value="${user.rePassword }"/></td>
+				<td><label id="rePasswordError" class="error"></label></td>
 			</tr>
 			<tr>
 				<td align="right"></td>
 				<td>
-				  <img id="vCode" src="/money/VerifyCodeServlet" border="1"/>
+				  <img id="vCode" src="./VerifyCodeServlet" border="1"/>
 		    	  <a  href="javascript:_change();">看不清，换一张</a>
 				</td>
 			</tr>
@@ -64,7 +64,7 @@
 			</tr>
 			<tr>
 				<td align="right"></td>
-				<td><input id="submit" type="submit" value="确认修改"/></td>
+				<td><input id="submit" type="submit" value="提交修改"/></td>
 			</tr>
 		</table>
 		</form>

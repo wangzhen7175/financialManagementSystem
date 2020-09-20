@@ -27,34 +27,34 @@
     <span id="spanTitle">新用户注册</span>
   </div>
   <div id="divBody">
-<form action="/money/regist.do" method="post" id="registForm">
+<form action="./regist.do" method="post" id="registForm">
 	<input type="hidden" name="method" value="regist"/>  
     <table id="tableForm">
       <tr>
         <td class="tdText">用户名：</td>
         <td class="tdInput">
-          <input class="inputClass" type="text" name="loginname" id="loginname" value="${form.loginname }"/>
+          <input class="inputClass" type="text" name="userName" id="userName" value="${form.userName }"/>
         </td>
         <td class="tdError">
-          <label class="errorClass" id="loginnameError">${errors.loginname }</label>
+          <label class="errorClass" id="userNameError">${errors.userName }</label>
         </td>
       </tr>
       <tr>
         <td class="tdText">登录密码：</td>
         <td>
-          <input class="inputClass" type="password" name="loginpass" id="loginpass" value="${form.loginpass }"/>
+          <input class="inputClass" type="password" name="password" id="password" value="${form.password }"/>
         </td>
         <td>
-          <label class="errorClass" id="loginpassError">${errors.loginpass }</label>
+          <label class="errorClass" id="passwordError">${errors.password }</label>
         </td>
       </tr>
       <tr>
         <td class="tdText">确认密码：</td>
         <td>
-          <input class="inputClass" type="password" name="reloginpass" id="reloginpass" value="${form.reloginpass }"/>
+          <input class="inputClass" type="password" name="rePassword" id="rePassword" value="${form.rePassword }"/>
         </td>
         <td>
-          <label class="errorClass" id="reloginpassError">${errors.reloginpass}</label>
+          <label class="errorClass" id="rePasswordError">${errors.rePassword}</label>
         </td>
       </tr>
       <tr>
@@ -78,7 +78,7 @@
       <tr>
         <td></td>
         <td>
-          <div id="divVerifyCode"><img id="imgVerifyCode" src="/money/VerifyCodeServlet"/></div>
+          <div id="divVerifyCode"><img id="imgVerifyCode" src="./VerifyCodeServlet"/></div>
         </td>
         <td>
           <label><a href="javascript:_hyz()">看不清，换一张</a></label>

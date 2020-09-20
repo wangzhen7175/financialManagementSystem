@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import com.superprince.entity.Menu;
 import com.superprince.entity.User;
 import com.superprince.exception.UserException;
-import com.superprince.service.CommonService;
+import com.superprince.service.MenuService;
 import com.superprince.service.UserService;
 import com.superprince.util.MenuUtils;
 import org.springframework.stereotype.Controller;
@@ -32,16 +32,30 @@ public class UserController {
 
     @Resource
     private UserService userService;
-    @Resource
-    private CommonService commonService;
 
+    @Resource
+    private MenuService menuService;
+
+    /**
+     * 进入登录页面 .jsp
+     * @return
+     */
     @RequestMapping("toLogin.do")
     public String loginPage() {
         //返回的字符串会对应一个/jsp/index.jsp页面
         return "login";
     }
+    /**
+     * 前往修改密码页面
+     * @return
+     */
+    @RequestMapping("toPwd.do")
+    public String toPwd() {
+        //返回的字符串会对应一个/jsp/index.jsp页面
+        return "pwd";
+    }
 	/**
-	 * 用户登录功能
+	 * 用户登录功能,进入首页
 	 *
 	 * @param req
 	 * @param resp
@@ -49,44 +63,38 @@ public class UserController {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	@RequestMapping("/login.do")
+	@RequestMapping("/index.do")
 	public String login(Model model, HttpServletRequest req, HttpServletResponse resp, @RequestParam String userName,
 						@RequestParam String password
 	) throws ServletException, IOException {
 
-		System.out.println(new Date().toString() + ":用户输入用户名：" + userName);
-		System.out.println(new Date().toString() + ":用户输入密码：" + password);
-
+	    if(userName == "" || userName == null){
+            return "login";
+        }
 		//获取真实验证码
 		String vcode = (String) req.getSession().getAttribute("vCode");
 		//获取用户输入的验证码
 		String verifyCode = req.getParameter("verifyCode");
-		/*
-		 * 3. 进行忽略大小写比较，得到结果
-		 */
+		//进行忽略大小写比较，得到结果
 		//boolean b = verifyCode.equalsIgnoreCase(vcode);
-        boolean b=true; //不使用验证码
+        boolean b = true; //不使用验证码
 		if (!b) {
-			System.out.println(new Date().toString() + ":用户输入了错误的验证码");
 			req.setAttribute("msg", "验证码错误!");
 			return "login";
 		}
 
-
-        User user = userService.login(userName);
+        User user = userService.login(userName);//根据用户名获取user对象
 		/*
-		 * 4. 开始判断
+		 * 开始判断
 		 */
 		if (user == null) {
 			req.setAttribute("msg", "用户名或密码错误！");
 			req.setAttribute("user", userName);
-			System.out.println(new Date().toString() + ":用户名或密码错误，登录失败，留在登录页面");
 			return "login";
 		} else {
 			if (user.getStatus().equals("0")) {
 				req.setAttribute("msg", "您还没有激活！");
 				req.setAttribute("user", userName);
-				System.out.println(new Date().toString() + ":用户名没有激活，登录失败，留在登录页面");
 				return "login";
 			} else {
 				// 保存用户到session
@@ -96,11 +104,11 @@ public class UserController {
 				Cookie cookie = new Cookie("userName", userName);
 				cookie.setMaxAge(60 * 60 * 24 * 10);//保存10天
 				resp.addCookie(cookie);
-				List<Menu> list = this.commonService.getAllMenu();
-				String menus = MenuUtils.buildMenus(list);
+				//构建菜单
+				List<Menu> menuList = menuService.getMenuList();
+				String menus = MenuUtils.buildMenus(menuList);
 				model.addAttribute("menus", menus);
-				System.out.println(new Date().toString() + "：用户登陆成功，重定向到主页");
-				return "/index";//重定向到主页
+				return "index";//重定向到主页
 
 			}
 		}

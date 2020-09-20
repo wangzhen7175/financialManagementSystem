@@ -4,26 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.superprince.mapper.PaymentsMapper" >
     <resultMap id="paymentsResultMap" type="Payments">
-        <id property="id" column="id"/>
-        <result property="value" column="value"/>
-        <result property="name" column="name"/>
-        <result property="paymentType" column="paymentType"/>
+        <id property="paymentId" column="payment_id"/>
+        <result property="paymentValue" column="payment_value"/>
+        <result property="paymentName" column="payment_name"/>
+        <result property="paymentType" column="payment_type"/>
         <result property="unit" column="unit"/>
-        <result property="descript" column="descript"/>
+        <result property="unitName" column="unit_name"/>
+        <result property="description" column="description"/>
         <result property="day" column="day"/>
-        <result property="crtTime" column="crtTime"/>
+        <result property="createTime" column="create_time"/>
         <result property="type" column="type"/>
-        <result property="unitName" column="unitName"/>
-        <result property="typeName" column="typeName"/>
+        <result property="typeName" column="type_name"/>
     </resultMap>
+
+    <select id="getWeekSum" parameterType="Map" resultType="Integer">
+        <![CDATA[
+        select SUM(payment_value) from payments
+        where payment_type = #{paymentType} and day >= #{monday} and day <= #{sunday}
+         ]]>
+    </select>
+    <select id="getMonthSum" parameterType="Map" resultType="Integer">
+        <![CDATA[
+        select SUM(payment_value) from payments
+        where payment_type = #{paymentType} and day like #{day}
+         ]]>
+    </select>
+    <select id="getMonthSumByType" parameterType="String" resultType="java.util.HashMap">
+        SELECT type_name,SUM(payment_value) AS payment_value  FROM vpayments WHERE payment_type = '2' and day like #{month} GROUP BY TYPE
+    </select>
+    <select id="getDayValue" parameterType="String" resultType="Integer">
+        select sum(payment_value) from payments where day = #{day}
+    </select>
     <select id="queryPage" parameterType="Map" resultType="list" resultMap="paymentsResultMap">
         select * from vpayments 
         <trim prefix="where" prefixOverrides="and |or">  
         <if test="paymentType != null">
-            paymenttype = #{paymenttype}  
+            payment_type = #{paymentType}
         </if>  
         <if test="name != null">  
-            and name like #{name}  
+            and payment_name like #{paymentName}
         </if>  
         <if test="type != null">  
             and type = #{type}  
@@ -38,10 +57,10 @@
         select count(*) from vpayments 
         <trim prefix="where" prefixOverrides="and |or">  
         <if test="paymentType != null">
-            paymenttype = #{paymenttype}  
+            payment_type = #{paymentType}
         </if>  
         <if test="name != null">  
-            and name like #{name}  
+            and payment_name like #{paymentName}
         </if>  
         <if test="type != null">  
             and type = #{type}  
@@ -52,17 +71,17 @@
         </trim> 
     </select>
     <insert id="addPayments" parameterType="Payments">
-        insert into payments(value,name,paymentType,unit,descript,day,crtTime,type)
-        values (#{value},#{name},#{paymentType},#{unit},#{descript},#{day},#{crtTime},#{type})
+        insert into payments(payment_value,payment_name,payment_type,unit,description,day,create_time,type)
+        values (#{paymentValue},#{paymentName},#{paymentType},#{unit},#{description},#{day},#{createtTime},#{type})
     </insert>
     <delete id="delPayments" parameterType="String" >
-        delete from  payments where id = #{id}
+        delete from  payments where payment_id = #{paymentId}
     </delete>
     <select id="getPaymentsById" parameterType="String" resultType="Payments">
-        select * from payments where id = #{id}
+        select * from payments where payment_id = #{paymentId}
     </select>
     <update id="updatePayments" parameterType="Payments">
-        update payments set name = #{name},value = #{value},unit = #{unit},type = #{type},descript = #{descript}
+        update payments set payment_name = #{paymentName},payment_value = #{paymentValue},unit = #{unit},type = #{type},description = #{description}
         where id = #{id}
     </update>
 </mapper>

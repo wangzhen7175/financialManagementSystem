@@ -36,17 +36,17 @@ function invokeValidateFunction(inputName) {
 /*
  * 校验密码
  */
-function validateLoginpass() {
+function validatePassword() {
 	var bool = true;
-	$("#loginpassError").css("display", "none");
-	var value = $("#loginpass").val();
+	$("#passwordError").css("display", "none");
+	var value = $("#password").val();
 	if(!value) {// 非空校验
-		$("#loginpassError").css("display", "");
-		$("#loginpassError").text("密码不能为空！");
+		$("#passwordError").css("display", "");
+		$("#passwordError").text("密码不能为空！");
 		bool = false;
 	} else if(value.length < 3 || value.length > 20) {//长度校验
-		$("#loginpassError").css("display", "");
-		$("#loginpassError").text("密码长度必须在3 ~ 20之间！");
+		$("#passwordError").css("display", "");
+		$("#passwordError").text("密码长度必须在3 ~ 20之间！");
 		bool = false;
 		
 	}	
@@ -56,15 +56,15 @@ function validateLoginpass() {
 // 校验新密码
 function validateNewpass() {
 	var bool = true;
-	$("#newpassError").css("display", "none");
-	var value = $("#newpass").val();
+	$("#newPasswordError").css("display", "none");
+	var value = $("#newPassword").val();
 	if(!value) {// 非空校验
-		$("#newpassError").css("display", "");
-		$("#newpassError").text("新密码不能为空！");
+		$("#newPasswordError").css("display", "");
+		$("#newPasswordError").text("新密码不能为空！");
 		bool = false;
 	} else if(value.length < 3 || value.length > 20) {//长度校验
-		$("#newpassError").css("display", "");
-		$("#newpassError").text("新密码长度必须在3 ~ 20之间！");
+		$("#newPasswordError").css("display", "");
+		$("#newPasswordError").text("新密码长度必须在3 ~ 20之间！");
 		bool = false;
 	}
 	return bool;
@@ -73,17 +73,17 @@ function validateNewpass() {
 /*
  * 校验确认密码
  */
-function validateReloginpass() {
+function validateRePassword() {
 	var bool = true;
-	$("#reloginpassError").css("display", "none");
-	var value = $("#reloginpass").val();
+	$("#rePasswordError").css("display", "none");
+	var value = $("#rePassword").val();
 	if(!value) {// 非空校验
-		$("#reloginpassError").css("display", "");
-		$("#reloginpassError").text("确认密码不能为空！");
+		$("#rePasswordError").css("display", "");
+		$("#rePasswordError").text("确认密码不能为空！");
 		bool = false;
-	} else if(value != $("#newpass").val()) {//两次输入是否一致
-		$("#reloginpassError").css("display", "");
-		$("#reloginpassError").text("两次密码输入不一致！");
+	} else if(value != $("#newPassword").val()) {//两次输入是否一致
+		$("#rePasswordError").css("display", "");
+		$("#rePasswordError").text("两次密码输入不一致！");
 		bool = false;
 	}
 	return bool;	
@@ -111,7 +111,7 @@ function validateVerifyCode() {
 			type: "POST",
 			dataType: "json",
 			data: {verifyCode: value},
-			url: "/money/verifyCode.do",
+			url: "./verifyCode.do",
 			success: function(flag) {
 				if(!flag) {
 					$("#verifyCodeError").css("display", "");

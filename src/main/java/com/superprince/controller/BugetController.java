@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.superprince.entity.Buget;
 import com.superprince.service.BugetService;
 import com.superprince.service.CommonService;
+import com.superprince.service.PaymentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping("/bugetController")
 public class BugetController
 {
   @Resource
   BugetService service;
   @Resource
   CommonService commonService;
+  @Resource
+  PaymentsService paymentsService;
   
   @RequestMapping("/query")
   @ResponseBody
@@ -40,7 +42,7 @@ public class BugetController
     Map<String,String> map = new HashMap<String,String>();
     map.put("paymenttype", "2");
     map.put("day", month+"%");
-    Integer pay = this.commonService.getMonthSum(map);
+    Integer pay = this.paymentsService.getMonthSum(map);
     return String.format("%s月份预算为：%s,已支出：%s！", buget.getMonth(),buget.getValue(),pay == null?"0":pay.toString());
   }
   @RequestMapping("/addBuget")

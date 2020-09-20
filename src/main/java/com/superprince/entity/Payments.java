@@ -6,44 +6,44 @@ public class Payments implements Serializable
 {
   private static final long serialVersionUID = 1256273897024133599L;
   
-  private Integer id;
-  private String value;
-  private String name;
+  private Integer paymentId;
+  private String paymentValue;
+  private String paymentName;
   private String paymentType;
   private String unit;
   private String unitName;
   private String description;
   private String day;
-  private Date crtTime;
+  private Date createTime;
   private String type;
-  private String typeName;
+  //private String typeName;
 
   public static long getSerialVersionUID() {
     return serialVersionUID;
   }
 
-  public Integer getId() {
-    return id;
+  public Integer getPaymentId() {
+    return paymentId;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setPaymentId(Integer paymentId) {
+    this.paymentId = paymentId;
   }
 
-  public String getValue() {
-    return value;
+  public String getPaymentValue() {
+    return paymentValue;
   }
 
-  public void setValue(String value) {
-    this.value = value;
+  public void setPaymentValue(String paymentValue) {
+    this.paymentValue = paymentValue;
   }
 
-  public String getName() {
-    return name;
+  public String getPaymentName() {
+    return paymentName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setPaymentName(String paymentName) {
+    this.paymentName = paymentName;
   }
 
   public String getPaymentType() {
@@ -86,12 +86,12 @@ public class Payments implements Serializable
     this.day = day;
   }
 
-  public Date getCrtTime() {
-    return crtTime;
+  public Date getCreateTime() {
+    return createTime;
   }
 
-  public void setCrtTime(Date crtTime) {
-    this.crtTime = crtTime;
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
   }
 
   public String getType() {
@@ -102,28 +102,19 @@ public class Payments implements Serializable
     this.type = type;
   }
 
-  public String getTypeName() {
-    return typeName;
-  }
-
-  public void setTypeName(String typeName) {
-    this.typeName = typeName;
-  }
-
   @Override
   public String toString() {
     return "Payments{" +
-            "id=" + id +
-            ", value='" + value + '\'' +
-            ", name='" + name + '\'' +
+            "paymentId=" + paymentId +
+            ", paymentValue='" + paymentValue + '\'' +
+            ", paymentName='" + paymentName + '\'' +
             ", paymentType='" + paymentType + '\'' +
             ", unit='" + unit + '\'' +
             ", unitName='" + unitName + '\'' +
             ", description='" + description + '\'' +
             ", day='" + day + '\'' +
-            ", crtTime=" + crtTime +
+            ", createTime=" + createTime +
             ", type='" + type + '\'' +
-            ", typeName='" + typeName + '\'' +
             '}';
   }
 }

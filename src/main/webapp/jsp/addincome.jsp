@@ -12,7 +12,7 @@ $(function(){
 });
 function submit(){
 	$('#myform').form('submit', {
-        url : '<%=basePath%>/paymentsController/addPayments.do?paymenttype=1',
+        url : './addPayments.do?paymenttype=1',
         onSubmit : function() {
             
             if ($(this).form("validate")) {
@@ -63,7 +63,7 @@ function cancel() {
                     valueField:'code',
                     textField:'codename',
                     width:80,
-                    url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=currency'
+                    url:'./listDatadictCata.do?catalog=currency'
                 " />
                 </td>
             </tr>
@@ -76,7 +76,7 @@ function cancel() {
                 data-options="required:true,
                     valueField:'code',
                     textField:'codename',
-                    url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=income'
+                    url:'./listDatadictCata.do?catalog=income'
                 " />
                 </td>
             </tr>

@@ -12,7 +12,7 @@ $(function(){
 });
 function submit(){
 	$('#myform').form('submit', {
-        url : '<%=basePath%>/commonController/addDatadictData.do',
+        url : './addDatadictData.do',
         onSubmit : function() {
             
             if ($(this).form("validate")) {
@@ -51,7 +51,7 @@ function cancel() {
 		        data-options="required:true,
 		            valueField:'code',
                     textField:'codename',
-		            url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=root'
+		            url:'./listDatadictCata.do?catalog=root'
 		        " />
                 </td>
             </tr>

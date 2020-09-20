@@ -12,7 +12,7 @@ $(function(){
 });
 function submit(){
 	$('#myform').form('submit', {
-        url : '<%=basePath%>/commonController/updateDatadictData.do',
+        url : './updateDatadictData.do',
         onSubmit : function() {
             
             if ($(this).form("validate")) {
@@ -54,7 +54,7 @@ function cancel() {
                     textField:'codename',
                     editable:false,
                     readonly:true,
-		            url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=root',
+		            url:'./listDatadictCata.do?catalog=root',
 		            onLoadSuccess:function(){
 		              $('#catalog').combobox('setValue','${entity.catalog}');
 		            }

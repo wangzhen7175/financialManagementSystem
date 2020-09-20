@@ -9,7 +9,7 @@
 <script>
 $(function(){
 	$('#datagrid_payout').datagrid({
-        url:'<%=basePath%>/paymentsController/query.do?paymenttype=2',
+        url:'./paymentsController/query.do?paymenttype=2',
         singleSelect:true,
         height:$('#tabs').height() - 50 - $('#btn').height(),
         pagination:true,
@@ -33,7 +33,7 @@ $(function(){
                     title:'添加',
                     closed:false
                 });
-                $('#window').window('refresh', '<%=basePath%>/jsp/addpayments.jsp');
+                $('#window').window('refresh', './addpayments.jsp');
             }
         },'-',{
             text:'编辑',
@@ -46,7 +46,7 @@ $(function(){
                 else{
                     $.ajax({
                         type: 'POST',   
-                        url: '<%=basePath%>/paymentsController/preUpdatePayments.do',
+                        url: './preUpdatePayments.do',
                         data: 'id='+select.id,
                         dataType:'text',
                         success: function(msg){
@@ -73,7 +73,7 @@ $(function(){
                 		if (r){
                 			$.ajax({
                                 type: 'POST',   
-                                url: '<%=basePath%>/paymentsController/deletePayments.do',
+                                url: './deletePayments.do',
                                 data: 'id='+select.id,
                                 dataType:'text',
                                 success: function(msg){
@@ -112,7 +112,7 @@ function onSubmit1()
                         data-options="
                         valueField:'code',
                         textField:'codename',
-                        url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=payout'"/>
+                        url:'./listDatadictCata.do?catalog=payout'"/>
     <span>支出日期：</span><input id="day" type="text" class="easyui-datebox" />
     <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" 
                   onclick="javascript:onSubmit1()">查询</a>

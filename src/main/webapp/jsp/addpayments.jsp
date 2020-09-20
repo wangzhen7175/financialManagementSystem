@@ -18,7 +18,7 @@ $(function(){
 });
 function submit(){
 	$('#myform').form('submit', {
-        url : '<%=basePath%>/paymentsController/addPayments.do?paymenttype=2',
+        url : './addPayments.do?paymenttype=2',
         onSubmit : function() {
             
             if ($(this).form("validate")) {
@@ -69,7 +69,7 @@ function cancel() {
                     valueField:'code',
                     textField:'codename',
                     width:80,
-                    url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=currency'
+                    url:'./listDatadictCata.do?catalog=currency'
                 " />
                 </td>
             </tr>
@@ -82,7 +82,7 @@ function cancel() {
                 data-options="required:true,
                     valueField:'code',
                     textField:'codename',
-                    url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=payout'
+                    url:'./listDatadictCata.do?catalog=payout'
                 " />
                 </td>
             </tr>
@@ -100,7 +100,7 @@ function cancel() {
                         var month = y+''+m;
 				        $.ajax({
 					        type: 'POST',   
-					        url: '<%=basePath%>/bugetController/getBuget.do?month='+month,
+					        url: './getBuget.do?month='+month,
 					        success: function(msg){
 					        $('#tooltip').tooltip('update',msg);
 					        }

@@ -20,9 +20,9 @@ public class MenuUtils
       return null;
     }
     List<TreeNode> nodeList = new ArrayList<TreeNode>();
-    for (Menu m : menuList)
+    for (Menu menu : menuList)
     {
-      TreeNode treeNode = new TreeNode(m.getMenuId(), m.getMenuName(),m.getUrl(), m.getParentId());
+      TreeNode treeNode = new TreeNode(menu.getMenuId(), menu.getMenuName(),menu.getMenuUrl(), menu.getParentMenuId());
       nodeList.add(treeNode);
     }
     Map<String,TreeNode> map = new HashMap<String,TreeNode>();

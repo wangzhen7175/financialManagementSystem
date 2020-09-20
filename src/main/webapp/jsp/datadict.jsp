@@ -9,7 +9,7 @@
 <script>
 $(function(){
 	$('#dg').datagrid({
-        url:'<%=basePath%>/commonController/listDatadict.do',
+        url:'./listDatadict.do',
         singleSelect:true,
         columns:[[
             {field:'id',title:'id',hidden:true,width:300},
@@ -25,7 +25,7 @@ $(function(){
             		title:'添加',
             		closed:false
             	});
-            	$('#window').window('refresh', '<%=basePath%>/jsp/adddatadict.jsp');
+            	$('#window').window('refresh', './adddatadict.jsp');
             }
         },'-',{
         	text:'编辑',
@@ -38,7 +38,7 @@ $(function(){
                 else{
                     $.ajax({
                         type: 'POST',   
-                        url: '<%=basePath%>/commonController/preUpdateDatadictData.do',
+                        url: './preUpdateDatadictData.do',
                         data: 'id='+select.id,
                         dataType:'text',
                         success: function(msg){
@@ -62,7 +62,7 @@ $(function(){
             	else{
             		$.ajax({
             			type: 'POST',   
-                        url: '<%=basePath%>/commonController/deleteDatadictData.do',
+                        url: './deleteDatadictData.do',
                         data: 'id='+select.id,
                         dataType:'text',
                         success: function(msg){

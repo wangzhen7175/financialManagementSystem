@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
     String path = request.getContextPath();
@@ -13,17 +12,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>常君同学毕业设计</title>
 <link rel="stylesheet" type="text/css"
-    href="<%=basePath%>/res/css/easyui/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="<%=basePath%>/res/css/easyui/icon.css">
+    href="./res/css/easyui/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="./res/css/easyui/icon.css">
 
-<script type="text/javascript" src="<%=basePath%>/res/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>/res/js/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="<%=basePath%>/res/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="<%=basePath%>/res/js/highcharts.js"></script>
-<script type="text/javascript" src="<%=basePath%>/res/js/highcharts-more.js"></script>
-<script type="text/javascript" src="<%=basePath%>/res/js/charts.js"></script>
+<script type="text/javascript" src="./res/js/jquery.min.js"></script>
+ <script type="text/javascript" src="./res/js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="./res/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./res/js/highcharts.js"></script>
+<script type="text/javascript" src="./res/js/highcharts-more.js"></script>
+<script type="text/javascript" src="./res/js/charts.js"></script>
+
 <script>
 $(function(){
+    alert("执行");
 	$('#tabs').tabs('add',{
 		title:'首页',
 		tools:[{
@@ -60,13 +61,13 @@ $(function(){
 </head>
 <body class="easyui-layout">
 		
-    <div data-options="region:'north',noheader:true,split:false" style="height:66px;background-color:rgb(139,235,218)">
-          欢迎您&nbsp;&nbsp;${sessionScope.sessionUser.loginname}&nbsp;&nbsp;|&nbsp;&nbsp;
-          <a href="/money/jsp/pwd.jsp" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-		  <a href="/money/quit.do" target="_parent">退出</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <div data-options="region:'north',noheader:true,split:false" style="height:70px;background-color:rgb(139,235,218)">
+          欢迎您&nbsp;&nbsp;${sessionScope.sessionUser}&nbsp;&nbsp;|&nbsp;&nbsp;
+          <a href="./toPwd.do" target="body">修改密码</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+		  <a href="./quit.do" target="_parent">退出系统</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 		  <a href="https://weibo.com/u/5291918666?from=myfollow_all&is_all=1" target="_top">联系我们</a>	
     
-        <h1>&nbsp;&nbsp;王振和常君的家庭财务管理系统</h1>
+        <h1>家庭财务管理系统</h1>
     </div>
     	
     

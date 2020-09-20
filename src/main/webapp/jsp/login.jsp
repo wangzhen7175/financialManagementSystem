@@ -16,13 +16,13 @@
 	-->
 	<link rel="stylesheet" type="text/css" href="./res/css/user/login.css">
 	<script type="text/javascript" src="./res/js/jquery-1.5.1.js"></script>
-	<script type="text/javascript" src="./res/js/user/login.js"></script>
-	<script src="./res/js/common.js"></script>
+      <script type="text/javascript" src="./res/js/user/login.js"></script>
+      <script src="./res/js/common.js"></script>
 <script type="text/javascript">
-	$(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
+	$(function() {// *Map<String(Cookie名称),Cookie(Cookie本身)>*/
 		// 获取cookie中的用户名
 		var userName = window.decodeURI("${cookie.userName.value}");
-		if("${requestScope.user.loginname}") {
+		if("${requestScope.user.userName}") {
             userName = "${requestScope.user.userName}";
 		}
 		$("#userName").val(userName);
@@ -44,7 +44,7 @@
               </span>
             </div>
             <div>
-              <form target="_top" action="./login.do" method="post" id="loginForm">
+              <form target="_top" action="./index.do" method="post" id="loginForm">
                 <input type="hidden" name="method" value="login" />
                   <table>
                     <tr>
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
-                      <td><label id="loginnameError" class="error"></label></td>
+                      <td><label id="userNameError" class="error"></label></td>
                     </tr>
                     <tr>
                       <td>密　码</td>
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                       <td height="20">&nbsp;</td>
-                      <td><label id="loginpassError" class="error"></label></td>
+                      <td><label id="passwordError" class="error"></label></td>
                     </tr>
                   <%--  <tr>
                       <td>验证码</td>

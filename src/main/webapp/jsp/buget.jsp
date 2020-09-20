@@ -9,7 +9,7 @@
 <script>
 $(function(){
 	$('#datagrid_buget').datagrid({
-        url:'<%=basePath%>/bugetController/query.do',
+        url:'./query.do',
         singleSelect:true,
         height:$('#tabs').height() - 50 - $('#btn').height(),
         pagination:true,
@@ -29,7 +29,7 @@ $(function(){
                     title:'添加',
                     closed:false
                 });
-                $('#window').window('refresh', '<%=basePath%>/jsp/addbuget.jsp');
+                $('#window').window('refresh', './addbuget.jsp');
             }
         },'-',{
             text:'编辑',
@@ -42,7 +42,7 @@ $(function(){
                 else{
                     $.ajax({
                         type: 'POST',   
-                        url: '<%=basePath%>/bugetController/preUpdateBuget.do',
+                        url: './preUpdateBuget.do',
                         data: 'id='+select.id,
                         dataType:'text',
                         success: function(msg){
@@ -69,7 +69,7 @@ $(function(){
                 		if (r){
                 			$.ajax({
                                 type: 'POST',   
-                                url: '<%=basePath%>/bugetController/deleteBuget.do',
+                                url: './deleteBuget.do',
                                 data: 'id='+select.id,
                                 dataType:'text',
                                 success: function(msg){

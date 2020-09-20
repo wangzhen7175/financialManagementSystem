@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -9,7 +8,7 @@
 <script>
 $(function(){
 	$('#datagrid_income').datagrid({
-        url:'<%=basePath%>/paymentsController/query.do?paymenttype=1',
+        url:'./paymentsController/query.do?paymenttype=1',
         singleSelect:true,
         height:$('#tabs').height() - 50 - $('#btn').height(),
         pagination:true,
@@ -33,7 +32,7 @@ $(function(){
                     title:'添加',
                     closed:false
                 });
-                $('#window').window('refresh', '<%=basePath%>/jsp/addincome.jsp');
+                $('#window').window('refresh', './addincome.jsp');
             }
         },'-',{
             text:'编辑',
@@ -46,7 +45,7 @@ $(function(){
                 else{
                     $.ajax({
                         type: 'POST',   
-                        url: '<%=basePath%>/paymentsController/preUpdatePayments.do',
+                        url: './preUpdatePayments.do',
                         data: 'id='+select.id,
                         dataType:'text',
                         success: function(msg){
@@ -73,7 +72,7 @@ $(function(){
                 		if (r){
                 			$.ajax({
                                 type: 'POST',   
-                                url: '<%=basePath%>/paymentsController/deletePayments.do',
+                                url: './deletePayments.do',
                                 data: 'id='+select.id,
                                 dataType:'text',
                                 success: function(msg){
@@ -112,7 +111,7 @@ function onSubmit2()
                         data-options="
                         valueField:'code',
                         textField:'codename',
-                        url:'<%=basePath%>/commonController/listDatadictCata.do?catalog=income'"/>
+                        url:'./listDatadictCata.do?catalog=income'"/>
     <span>收入日期：</span><input id="incomeday" type="text" class="easyui-datebox" />
     <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" 
                   onclick="javascript:onSubmit2()">查询</a>

@@ -50,7 +50,7 @@
 a {text-decoration: none;}
 a:visited {color: #018BD3;}
 a:hover {color:#FF6600; text-decoration: underline;}
-}
+
 </style>
 
   </head>
@@ -58,11 +58,11 @@ a:hover {color:#FF6600; text-decoration: underline;}
   <body>
   <c:choose>
   	<c:when test="${code eq 'success' }"><%--如果code是功能，它显示对号图片 --%>
-  		<c:set var="img" value="/res/images/duihao.jpg"/>
+  		<c:set var="img" value="./res/images/duihao.jpg"/>
   		<c:set var="title" value="成功"/>
   	</c:when>
   	<c:when test="${code eq 'error' }"><%--如果code是功能，它显示错号图片 --%>
-  		<c:set var="img" value="/res/images/cuohao.png"/>
+  		<c:set var="img" value="./res/images/cuohao.png"/>
   		<c:set var="title" value="失败"/>
   	</c:when>
   	
@@ -73,14 +73,14 @@ a:hover {color:#FF6600; text-decoration: underline;}
 	</div>
 	<div class="divContent">
 	  <div style="margin: 20px;">
-		<img style="float: left; margin-right: 30px;" src="/money/${img }" width="150"/>
+		<img style="float: left; margin-right: 30px;" src="./${img }" width="150"/>
 		<span style="font-size: 30px; color: #c30; font-weight: 900;">${msg }</span>
 		<br/>
 		<br/>
 		<br/>
 		<br/>
-		<span style="margin-left: 50px;"><a target="_top" href="/money/jsp/login.jsp">登录</a></span>
-		<span style="margin-left: 50px;"><a target="_top" href="/money/jsp/index.jsp">主页</a></span>
+		<span style="margin-left: 50px;"><a target="_top" href="./login.jsp">登录</a></span>
+		<span style="margin-left: 50px;"><a target="_top" href="./index.jsp">主页</a></span>
 	  </div>
 	</div>
 </div>

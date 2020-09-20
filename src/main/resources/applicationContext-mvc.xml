@@ -46,6 +46,7 @@
             <mvc:exclude-mapping path="/toRegist.do" />
             <mvc:exclude-mapping path="/login.do" />
             <mvc:exclude-mapping path="/regist.do" />
+            <mvc:exclude-mapping path="/index.do" />
             <bean class="com.superprince.interceptor.CommonInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
