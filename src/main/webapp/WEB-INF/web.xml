@@ -24,7 +24,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<jsp-config>
-		<jsp-property-group>
+		<!--<jsp-property-group>
 			<display-name>HtmlConfiguration</display-name>
 			<url-pattern>*.html</url-pattern>
 			<page-encoding>UTF-8</page-encoding>
@@ -33,10 +33,10 @@
 			<display-name>JspConfiguration</display-name>
 			<url-pattern>*.jsp</url-pattern>
 			<page-encoding>UTF-8</page-encoding>
-		</jsp-property-group>
+		</jsp-property-group>-->
 		<jsp-property-group>
 			<display-name>JsConfiguration</display-name>
-			<url-pattern>*.js</url-pattern>
+			<url-pattern>/res/js/*</url-pattern>
 			<page-encoding>UTF-8</page-encoding>
 		</jsp-property-group>
 	</jsp-config>

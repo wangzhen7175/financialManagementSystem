@@ -17,7 +17,7 @@
 
 <script type="text/javascript" src="./res/js/jquery.min.js"></script>
  <script type="text/javascript" src="./res/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="./res/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./res/ujs/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./res/js/highcharts.js"></script>
 <script type="text/javascript" src="./res/js/highcharts-more.js"></script>
 <script type="text/javascript" src="./res/js/charts.js"></script>
